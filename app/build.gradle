@@ -6,7 +6,7 @@ def build = depends.build
 def support = depends.support
 def test = depends.test
 
-def app_bundle_id = "com.class100.yunshixun"
+def app_bundle_id = "com.class100.oceanides.demo"
 def app_version_name = "0.0.1"
 def app_version_code = 000000001
 
