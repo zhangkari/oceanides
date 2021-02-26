@@ -2,6 +2,7 @@ package com.class100.oceanides;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,12 @@ public class OcActivity extends AppCompatActivity {
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        if (isFullScreen()) {
+            setFullScreen();
+        }
+        if (isHiddenNavigationBar()) {
+            hideNavigationBar();
+        }
         setContentView(R.layout.oc_activity);
         viewPiece = new AtViewPieces(findViewById(android.R.id.content));
         incubate();
@@ -82,5 +89,25 @@ public class OcActivity extends AppCompatActivity {
 
     protected String getPageName() {
         return getClass().getSimpleName();
+    }
+
+    protected void setFullScreen() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    protected boolean isFullScreen() {
+        return true;
+    }
+
+    protected void hideNavigationBar() {
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
+    protected boolean isHiddenNavigationBar() {
+        return true;
     }
 }
