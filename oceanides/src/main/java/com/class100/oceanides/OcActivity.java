@@ -58,11 +58,15 @@ public class OcActivity extends AppCompatActivity {
         int titleId = getTitleLayout();
         if (titleId != 0) {
             viewPiece.attach(R.id.oc_layout_title, titleId);
+        } else {
+            viewPiece.setVisibility(titleId, View.GONE);
         }
 
         int contentId = getContentLayout();
         if (contentId != 0) {
             viewPiece.attach(R.id.oc_layout_content, contentId);
+        } else {
+            viewPiece.setVisibility(contentId, View.GONE);
         }
 
         int progressId = getProgressLayout();
